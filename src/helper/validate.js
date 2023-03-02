@@ -20,10 +20,15 @@ export async function resetPasswordValidate(values) {
 
 // VALIDATING REGISTER PAGE 
 export async function registerValidate(values) {
-    const errors=usernameVerify({}, values)
+    const errors = usernameVerify({}, values)
     passwordVerify(errors, values)
     emailVerify(errors, values)
 
+    return errors;
+}
+
+export async function profileValidate(values) {
+    const errors = emailVerify({}, values)
     return errors;
 }
 
@@ -42,7 +47,7 @@ function usernameVerify(error = {}, values) {
 // VALIDATING PASSWORD
 function passwordVerify(error = {}, values) {
     const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    
+
     if (!values.password) {
         error.password = toast.error("Password Required...!")
     } else if (values.password.includes(" ")) {
@@ -58,24 +63,24 @@ function passwordVerify(error = {}, values) {
 }
 
 // VALIDATING RESET  PASSWORD
-function resetPasswordVerify(errors={},values){
-    if(!values.password || !values.confirmPassword){
-        errors.resetPassword=toast.error("Please fill both the fields...!")
+function resetPasswordVerify(errors = {}, values) {
+    if (!values.password || !values.confirmPassword) {
+        errors.resetPassword = toast.error("Please fill both the fields...!")
     }
-    else if(values.password !== values.confirmPassword){
-        errors.resetPassword=toast.error("Password must be same...!")
+    else if (values.password !== values.confirmPassword) {
+        errors.resetPassword = toast.error("Password must be same...!")
     }
     return errors
 }
 
 /** validate email */
-function emailVerify(errors={},values){
-    if(!values.email){
-        errors.email=toast.error("Email required...!")
-    }else if(values.email.includes(' ')){
-        errors.email=toast.error("Email Invalid...!")
-    }else if(!/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(values.email)){
-        errors.email=toast.error("Email Invalid...!")
+function emailVerify(errors = {}, values) {
+    if (!values.email) {
+        errors.email = toast.error("Email required...!")
+    } else if (values.email.includes(' ')) {
+        errors.email = toast.error("Email Invalid...!")
+    } else if (!/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(values.email)) {
+        errors.email = toast.error("Email Invalid...!")
     }
 
     return errors;
