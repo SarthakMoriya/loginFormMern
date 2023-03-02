@@ -42,10 +42,10 @@ const Reset = () => {
               <button type='submit' className={styles.btn}>Sign In</button>
             </div>
             <div className='text-center py-4'>
-              <span className='text-gray-500'>Can't get OTP?
-                <button className='text-red-500 ml-1' to="/register">
-                  Resend
-                </button>
+              <span className='text-gray-500'>New here ?
+                <Link className='text-red-500 ml-1' to="/register">
+                  Register
+                </Link>
               </span>
             </div>
           </form>

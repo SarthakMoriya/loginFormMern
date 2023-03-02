@@ -18,6 +18,15 @@ export async function resetPasswordValidate(values) {
     return errors;
 }
 
+// VALIDATING REGISTER PAGE 
+export async function registerValidate(values) {
+    const errors=usernameVerify({}, values)
+    passwordVerify(errors, values)
+    emailVerify(errors, values)
+
+    return errors;
+}
+
 
 // VALIDATING USERNAMES
 function usernameVerify(error = {}, values) {
@@ -57,4 +66,17 @@ function resetPasswordVerify(errors={},values){
         errors.resetPassword=toast.error("Password must be same...!")
     }
     return errors
+}
+
+/** validate email */
+function emailVerify(errors={},values){
+    if(!values.email){
+        errors.email=toast.error("Email required...!")
+    }else if(values.email.includes(' ')){
+        errors.email=toast.error("Email Invalid...!")
+    }else if(!/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(values.email)){
+        errors.email=toast.error("Email Invalid...!")
+    }
+
+    return errors;
 }
