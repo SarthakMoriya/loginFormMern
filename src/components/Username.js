@@ -25,7 +25,7 @@ const Username = () => {
 
   return (
     <div className="container mx-auto">
-      <Toaster position='top-center' reverseOrder={false} />
+      <Toaster position='top-center' reverseOrder={false}/>
       <div className="flex justify-center items-center h-screen">
         <div className={styles.glass}>
           <div className="title flex flex-col items-center">
@@ -37,7 +37,7 @@ const Username = () => {
             <div className='profile flex justify-center py-4'>
               <img src={Avatar} className={styles.profile_img} alt='avatar' />
             </div>
-            <div className='textBox flex flex-col items-center py-4'>
+            <div className='textBox flex flex-col items-center py-4 my-2'>
               <input {...formik.getFieldProps('username')} type='text' placeholder='Username' className={styles.textbox} />
               <button type='submit' className={styles.btn}>Let's Go</button>
             </div>
