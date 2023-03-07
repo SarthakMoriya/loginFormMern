@@ -1,15 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { useFormik } from 'formik';
 import { usernameValidate } from '../helper/validate';
-
+import { useAuthStore } from '../store/store';
 
 import Avatar from '../assets/profile.png'
 import '../index.css'
 import styles from '../styles/Username.module.css'
 
 const Username = () => {
+  const navigate=useNavigate();
+
+  const setUsername = useAuthStore(state => state.setUsername)
+  const username = useAuthStore(state => state.auth.username)
+  // this usernameProperty can be accessed anywhere like in redux store
 
   const formik = useFormik({
     initialValues: {
@@ -20,12 +25,14 @@ const Username = () => {
     validateOnChange: false,
     onSubmit: async values => {
       console.log(values)
+      setUsername(values.username)
+      navigate('/password')
     }
   })
 
   return (
     <div className="container mx-auto">
-      <Toaster position='top-center' reverseOrder={false}/>
+      <Toaster position='top-center' reverseOrder={false} />
       <div className="flex justify-center items-center h-screen">
         <div className={styles.glass}>
           <div className="title flex flex-col items-center">

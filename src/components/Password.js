@@ -38,7 +38,7 @@ const Password = () => {
               <img src={Avatar} className={styles.profile_img} alt='avatar' />
             </div>
             <div className='textBox flex flex-col items-center py-4 my-2'>
-              <input {...formik.getFieldProps('password')} type='password' placeholder='Username' className={styles.textbox} />
+              <input {...formik.getFieldProps('password')} type='password' placeholder='Password' className={styles.textbox} />
               <button type='submit' className={styles.btn}>Let's Go</button>
             </div>
             <div className='text-center py-4'>
